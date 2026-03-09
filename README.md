@@ -1,128 +1,258 @@
-# AI-code-Reviewer
----
-🧠 AI Code Reviewer & Debugging Tool
-An AI-powered web application that analyzes C++ and Python code, detects errors, explains mistakes in simple language, and suggests corrected versions — built to help developers debug faster and learn better.
+# 🤖 AI Code Review & Debugging Tool
 
----
-🚀 Why This Project Exists
-Beginner and intermediate programmers often struggle with:
-Understanding compiler/runtime errors
-Debugging logical mistakes
-Learning why code fails, not just fixing it
-This tool bridges that gap by combining software engineering principles with LLM-powered code analysis, delivering clear explanations instead of cryptic error messages.
+AI Code Review & Debugging Tool is a web-based application that analyzes source code and provides automated feedback such as potential errors, explanations, and improved versions of the code.
 
----
-✨ Features
-🔍 Analyze C++ and Python source code
-🧠 Detect syntax and logical errors
-📘 Human-readable explanations of mistakes
-✅ AI-generated corrected code suggestions
-⚡ Fast backend built with FastAPI
-🌐 Simple web-based interface
+The goal of this project is to demonstrate how **AI-powered developer tools** can be built using a modern backend framework and exposed through clean REST APIs, similar to tools used in real-world software engineering workflows.
 
----
-🛠️ Tech Stack
-Backend
-Python
-FastAPI
-OpenAI API
-Pydantic
-Uvicorn
-Frontend
-HTML
-CSS
-JavaScript
-Tools
-Git & GitHub
-Virtual Environment (venv)
+This project focuses more on **backend engineering, API design, and system integration** rather than UI complexity.
 
 ---
 
-🏗️ Project Architecture
+## 🚀 Features
 
+* Paste source code and select programming language
+* AI-based code review and debugging feedback
+* Error detection and explanation
+* Suggested corrected code
+* REST API built with FastAPI
+* Auto-generated API documentation (Swagger)
+* Demo mode support (works without OpenAI API credits)
+
+---
+
+## 🧠 How It Works
+
+1. User pastes code and selects the language in the frontend UI
+2. Frontend sends a POST request to the FastAPI backend
+3. Backend prepares a structured prompt for AI analysis
+4. AI analyzes the code and returns:
+
+   * Errors
+   * Explanation
+   * Corrected code
+5. The response is displayed in the UI in a readable format
+
+When no OpenAI API key is configured, the system automatically runs in **demo mode** to simulate AI responses.
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+
+* Python
+* FastAPI
+* OpenAI API
+* Pydantic (data validation)
+* REST APIs
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript (Fetch API)
+
+### Tools & Concepts
+
+* API-based architecture
+* Environment variables
+* Error handling
+* JSON-based communication
+
+---
+
+## 📁 Project Structure
+
+```
 ai-code-reviewer/
 │
 ├── backend/
-│   ├── main.py          # FastAPI entry point
-│   ├── prompts.py       # Prompt engineering logic
-│   ├── schemas.py       # Request/response models
+│   ├── main.py
+│   ├── schemas.py
+│   ├── prompts.py
+│   └── __init__.py
 │
 ├── frontend/
 │   ├── index.html
-│   ├── style.css
-│   └── script.js
+│   ├── script.js
+│   └── style.css
+│
+├── screenshots/
+│   ├── ui-input.png
+│   ├── output-result.png
+│   ├── api-docs.png
+│   └── analyze-endpoint.png
 │
 ├── requirements.txt
-├── .env
 └── README.md
-
----
-⚙️ How It Works
-1. User submits source code and selects a language
-2. Backend sends structured prompt to the LLM
-3. AI analyzes the code and returns:
-Errors
-Explanation
-Corrected version
-4. Results are displayed in real time on the frontend
-
----
-🧪 Example Use Case
-Input (C++):
-
-int main() {
-  cout << "Hello World"
-}
-Output:
-Missing semicolon
-Missing #include <iostream>
-Corrected code with explanation
+```
 
 ---
 
-▶️ Getting Started (Local Setup)
+## 📷 Screenshots
 
-1. Clone the repository
-git clone https://github.com/dheeraj0525/ai-code-reviewer.git
-cd ai-code-reviewer
+### Code Input Interface
 
-2. Create & activate virtual environment
-Windows
+![Input Interface](screenshots/ui-input.png)
+
+### AI Analysis Output
+
+![Analysis Output](screenshots/output-result.png)
+
+### API Documentation (Swagger)
+
+![API Docs](screenshots/api-docs.png)
+
+### Analyze Endpoint
+
+![Analyze Endpoint](screenshots/analyze-endpoint.png)
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/dheeraj0525/AI-code-Reviewer.git
+cd AI-code-Reviewer
+```
+
+### 2️⃣ Create Virtual Environment (Recommended)
+
+```bash
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate   # Linux / Mac
+venv\Scripts\activate      # Windows
+```
 
-macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
+### 3️⃣ Install Dependencies
 
-3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-4. Add environment variables
-Create a .env file in the root directory:
-OPENAI_API_KEY=your_api_key_here
+### 4️⃣ Environment Variables (Optional)
+
+Create a `.env` file:
+
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+> ⚠️ If the API key is not provided, the application runs in **demo mode**.
 
 ---
 
-5. Run the backend
+## ▶️ Run the Application
+
+### Start Backend
+
+```bash
 uvicorn backend.main:app --reload
-Open in browser:
-http://127.0.0.1:8000/docs
+```
+
+Backend runs at:
+
+```
+http://127.0.0.1:8000
+```
+
+### Start Frontend
+
+```bash
+cd frontend
+python -m http.server 5500
+```
+
+Frontend runs at:
+
+```
+http://localhost:5500
+```
 
 ---
 
-📌 Future Enhancements
+## 📄 API Documentation
 
-Support for more programming languages
-User authentication & history
-Advanced static analysis
-Code quality scoring
-Deployment (Docker / Cloud)
+FastAPI provides automatic API documentation:
+
+* Swagger UI
+
+  ```
+  http://127.0.0.1:8000/docs
+  ```
+
+* ReDoc
+
+  ```
+  http://127.0.0.1:8000/redoc
+  ```
 
 ---
 
-👤 Author
+## 🧪 Example API Request
 
-Dheeraj Aryan
-BCA (AI & Data Science)
-Aspiring Software / AI Engineer
+**POST** `/analyze`
+
+```json
+{
+  "code": "int main(){ cout << \"Hello\"; }",
+  "language": "C++"
+}
+```
+
+**Response**
+
+```json
+{
+  "errors": ["Missing include for iostream"],
+  "explanation": "The cout object requires the iostream header.",
+  "corrected_code": "#include <iostream>\nint main(){ std::cout << \"Hello\"; }"
+}
+```
+
+---
+
+## 🚧 Limitations
+
+* Output quality depends on AI model
+* Currently supports basic code review scenarios
+* Not a replacement for human code review
+
+---
+
+## 🔮 Future Improvements
+
+* GitHub repository integration
+* Support for more programming languages
+* Static code analysis (rule-based checks)
+* Authentication & user history
+* Deployment as a hosted SaaS tool
+
+---
+
+## 👨‍💻 Author
+
+**Dheeraj Aryan**
+BCA Student | Aspiring Software Engineer
+GitHub: [https://github.com/dheeraj0525](https://github.com/dheeraj0525)
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## ⭐ Why This Project Matters
+
+This project demonstrates:
+
+* API-driven backend development
+* AI integration in real applications
+* Clean request/response design
+* Practical handling of real-world constraints (demo mode)
+
+It reflects how modern developer tools are built and deployed in industry environments.
